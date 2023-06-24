@@ -1,7 +1,11 @@
 <script>
+	let editStyle =
+		'hover:border-indigo-500 focus:border-indigo-500 border-2 border-white [&[contenteditable]]:active:border-2 [&[contenteditable]]:focus:border-2 [&[contenteditable]]:focus:outline-none ';
+
 	let name = 'Dwight K. Shrute';
 	let role = 'Paper salesman';
-	let editable = Object;
+
+	let editable = '';
 
 	let index;
 
@@ -104,8 +108,7 @@
 
 	let selectedParent = '';
 	let selectedAction = '';
-	let selectedChild;
-	let editableChild;
+	let selectedChild = '';
 
 	function handleRightClick(event) {
 		menu = true;
@@ -138,24 +141,18 @@
 <svelte:window
 	on:contextmenu|preventDefault
 	on:click={() => {
-		menu = false;
+		selectedChild = '';
+		editable = '';
 	}}
-	on:contextmenu|preventDefault={handleRightClick}
 />
 
 {#if menu}
 	<ul
 		style="top:{menuPos.y}px; left:{menuPos.x}px"
-		class="hover:border-indigo-500 border absolute rounded-xl bg-lime-100 prose w-40 z-10"
+		class="absolute rounded-xl bg-lime-100 prose w-40 z-10"
 	>
 		{#each menuOptions as opt}
-			<li
-				class="hover:border-indigo-500 border-2 p-2 hover:bg-lime-300"
-				on:click={() => {
-					selectedAction = opt;
-					handleMenuClick();
-				}}
-			>
+			<li class="p-2 hover:bg-lime-300">
 				{opt}
 			</li>
 		{/each}
@@ -167,20 +164,21 @@
 	<!-- resume page-->
 	<div>
 		<!-- header -->
-		<div class="flex justify-between">
+		<div class={'flex justify-between '}>
 			<div>
 				<!-- name -->
 				<h1
-					contenteditable="true"
-					class="hover:border-indigo-500 border-2 border-white cursor-default m-0 prose text-4xl font-bold"
+					contenteditable="false"
+					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 prose text-4xl font-bold"
+					on:keydown={() => {}}
 				>
 					{name}
 				</h1>
 
 				<!-- role -->
 				<p
-					contenteditable="true"
-					class="hover:border-indigo-500 border-2 border-white cursor-default m-0 prose"
+					contenteditable="false"
+					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 prose"
 				>
 					{name}
 				</p>
@@ -190,22 +188,22 @@
 			<div class="prose">
 				<!-- mail -->
 				<p
-					contenteditable="true"
-					class="hover:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
+					contenteditable="false"
+					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
 				>
 					{contact.mail}
 				</p>
 				<!-- phone -->
 				<p
-					contenteditable="true"
-					class="hover:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
+					contenteditable="false"
+					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
 				>
 					{contact.phone}
 				</p>
 				<!-- website -->
 				<p
-					contenteditable="true"
-					class="hover:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
+					contenteditable="false"
+					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
 				>
 					{contact.website}
 				</p>
@@ -213,8 +211,8 @@
 				<section class="mt-2">
 					{#each Object.entries(links) as [key, value]}
 						<p
-							contenteditable="true"
-							class="hover:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
+							contenteditable="false"
+							class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
 						>
 							{value}
 						</p>
@@ -230,8 +228,8 @@
 				<section>
 					<!-- section title -->
 					<p
-						contenteditable="true"
-						class="hover:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
+						contenteditable="false"
+						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
 					>
 						Skills
 					</p>
@@ -240,8 +238,8 @@
 					<div class="text-xs pl-0 flex flex-wrap">
 						{#each superset['skills'] as skill}
 							<p
-								contenteditable="true"
-								class="hover:border-indigo-500 border-2 border-white cursor-default bg-gray-100 rounded-xl m-1 p-1"
+								contenteditable="false"
+								class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default bg-gray-100 rounded-xl m-1 p-1"
 							>
 								{skill}
 							</p>
@@ -253,8 +251,8 @@
 				<section>
 					<!-- section title -->
 					<p
-						contenteditable="true"
-						class="hover:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
+						contenteditable="false"
+						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
 					>
 						Certificates
 					</p>
@@ -262,8 +260,8 @@
 					<ul class="text-xs pl-0 list-outside list-none">
 						{#each superset['certifications'] as certificate}
 							<li
-								class="hover:border-indigo-500 border-2 border-white cursor-default"
-								contenteditable="true"
+								class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default"
+								contenteditable="false"
 							>
 								{certificate}
 							</li>
@@ -275,8 +273,8 @@
 				<section>
 					<!-- section title -->
 					<p
-						contenteditable="true"
-						class="hover:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
+						contenteditable="false"
+						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
 					>
 						Projects
 					</p>
@@ -285,14 +283,14 @@
 						<div class="flex flex-col text-xs">
 							<div>
 								<p
-									contenteditable="true"
-									class="hover:border-indigo-500 border-2 border-white cursor-default font-semibold"
+									contenteditable="false"
+									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-semibold"
 								>
 									{project.name}
 								</p>
 								<p
-									contenteditable="true"
-									class="hover:border-indigo-500 border-2 border-white cursor-default m-0 ml-6 text-xs italic"
+									contenteditable="false"
+									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 ml-6 text-xs italic"
 								>
 									{project.desc}
 								</p>
@@ -305,7 +303,7 @@
 				<section>
 					<!-- section title -->
 					<p
-						class="hover:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
+						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
 					>
 						Interests
 					</p>
@@ -313,8 +311,8 @@
 					<ul class="text-xs pl-0 list-inside">
 						{#each superset['interests'] as interest}
 							<li
-								contenteditable="true"
-								class="hover:border-indigo-500 border-2 border-white cursor-default"
+								contenteditable="false"
+								class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default"
 							>
 								{interest}
 							</li>
@@ -329,8 +327,8 @@
 				<section>
 					<!-- summary title -->
 					<p
-						contenteditable="true"
-						class="hover:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
+						contenteditable="false"
+						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
 					>
 						Summary
 					</p>
@@ -339,8 +337,8 @@
 					<section>
 						{#each superset['summary'] as summary}
 							<p
-								contenteditable="true"
-								class="hover:border-indigo-500 border-2 border-white cursor-default m-0 p-0 text-xs"
+								contenteditable="false"
+								class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 p-0 text-xs"
 							>
 								{summary}
 							</p>
@@ -352,7 +350,7 @@
 				<section>
 					<!-- experience title -->
 					<p
-						class="hover:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
+						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
 					>
 						Experience
 					</p>
@@ -362,8 +360,8 @@
 							<div class="flex flex-col justify-between text-xs mb-2">
 								<!-- role -->
 								<p
-									contenteditable="true"
-									class="hover:border-indigo-500 border-2 border-white cursor-default p-0 m-0 font-semibold"
+									contenteditable="false"
+									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 font-semibold"
 								>
 									{experience.role}
 								</p>
@@ -372,15 +370,15 @@
 								<div class="flex justify-between">
 									<!-- comapany name -->
 									<p
-										contenteditable="true"
-										class="hover:border-indigo-500 border-2 border-white cursor-default p-0 m-0 font-light"
+										contenteditable="false"
+										class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 font-light"
 									>
 										{experience.company}
 									</p>
 									<!-- company duration -->
 									<p
-										contenteditable="true"
-										class="hover:border-indigo-500 border-2 border-white cursor-default p-0 m-0 italic"
+										contenteditable="false"
+										class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 italic"
 									>
 										{experience.duration}
 									</p>
@@ -389,8 +387,8 @@
 								<hr class="m-0 p-0 my-2" />
 								<!-- experience summary -->
 								<p
-									contenteditable="true"
-									class="hover:border-indigo-500 border-2 border-white cursor-default m-0 p-0"
+									contenteditable="false"
+									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 p-0"
 								>
 									{experience.summary}
 								</p>
@@ -398,8 +396,8 @@
 								<ul>
 									{#each experience.tasks as task}
 										<li
-											contenteditable="true"
-											class="hover:border-indigo-500 border-2 border-white cursor-default m-0 p-0"
+											contenteditable="false"
+											class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 p-0"
 										>
 											{task}
 										</li>
@@ -414,7 +412,11 @@
 				<section>
 					<!-- education title -->
 					<p
-						class="hover:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
+						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
+						contenteditable={selectedChild === 'education'}
+						on:dblclick={() => {
+							selectedChild = 'education';
+						}}
 					>
 						Education
 					</p>
@@ -424,27 +426,39 @@
 							<div class={'flex flex-col justify-between text-xs mb-2 '}>
 								<!-- degree -->
 								<p
-									contenteditable="true"
-									class="hover:border-indigo-500 border-2 border-white cursor-default p-2 m-0 font-semibold"
+									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-2 m-0 font-semibold"
+									contenteditable={selectedChild === education.degree}
+									on:dblclick={() => {
+										selectedChild = education.degree;
+									}}
 								>
 									{education.degree}
 								</p>
-								<div class="flex justify-between">
+								<div class="flex overflow-hidden">
 									<!-- institute -->
-									<p
-										class="hover:border-indigo-500 border-2 border-white cursor-default p-2 pt-0 m-0 font-light"
-										contenteditable="true"
-										on:contextmenu|preventDefault={() => {
-											selectedParent = 'education';
-											selectedChild = education;
+									<button
+										class={'p-2 pt-0 m-0 font-light max-w-xs overflow-ellipsis  ' + editStyle}
+										contenteditable={selectedChild === education.institute}
+										on:dblclick={() => {
+											selectedChild = education.institute;
 										}}
 									>
 										{education.institute}
-									</p>
+									</button>
 									<!-- year -->
 									<p
-										class="hover:border-indigo-500 border-2 border-white cursor-default p-2 pt-0 m-0 italic"
-										contenteditable="true"
+										tabindex="-1"
+										on:keydown={() => {}}
+										on:dblclick|preventDefault|stopPropagation={() => {
+											editable = education.duration;
+										}}
+										on:click|preventDefault|stopPropagation={() => {
+											selectedChild = education.duration;
+										}}
+										contenteditable={editable === education.duration}
+										class={`p-2 pt-0 m-0 italic w-16 break-words ${editStyle} ${
+											editable === education.duration ? 'cursor-text' : 'cursor-default select-none'
+										}`}
 									>
 										{education.duration}
 									</p>
