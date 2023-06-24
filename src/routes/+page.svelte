@@ -1,4 +1,6 @@
 <script>
+	import Atom from './atom.svelte';
+
 	let editStyle =
 		'hover:border-indigo-500 focus:border-indigo-500 border-2 border-white [&[contenteditable]]:active:border-2 [&[contenteditable]]:focus:border-2 [&[contenteditable]]:focus:outline-none ';
 
@@ -137,14 +139,6 @@
 		}
 	}
 </script>
-
-<svelte:window
-	on:contextmenu|preventDefault
-	on:click={() => {
-		selectedChild = '';
-		editable = '';
-	}}
-/>
 
 {#if menu}
 	<ul
@@ -425,43 +419,23 @@
 						{#each superset['education'] as education}
 							<div class={'flex flex-col justify-between text-xs mb-2 '}>
 								<!-- degree -->
-								<p
-									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-2 m-0 font-semibold"
-									contenteditable={selectedChild === education.degree}
-									on:dblclick={() => {
-										selectedChild = education.degree;
-									}}
-								>
-									{education.degree}
-								</p>
+								<Atom
+									content={education.degree}
+									baseStyle="px-2 m-0 font-semibold basis-1 break-all"
+								/>
+
 								<div class="flex overflow-hidden">
 									<!-- institute -->
-									<button
-										class={'p-2 pt-0 m-0 font-light max-w-xs overflow-ellipsis  ' + editStyle}
-										contenteditable={selectedChild === education.institute}
-										on:dblclick={() => {
-											selectedChild = education.institute;
-										}}
-									>
-										{education.institute}
-									</button>
+									<Atom
+										content={education.institute}
+										baseStyle="px-2 pt-0 m-0 font-light basis-3/5 break-all "
+									/>
+
 									<!-- year -->
-									<p
-										tabindex="-1"
-										on:keydown={() => {}}
-										on:dblclick|preventDefault|stopPropagation={() => {
-											editable = education.duration;
-										}}
-										on:click|preventDefault|stopPropagation={() => {
-											selectedChild = education.duration;
-										}}
-										contenteditable={editable === education.duration}
-										class={`p-2 pt-0 m-0 italic w-16 break-words ${editStyle} ${
-											editable === education.duration ? 'cursor-text' : 'cursor-default select-none'
-										}`}
-									>
-										{education.duration}
-									</p>
+									<Atom
+										content={education.duration}
+										baseStyle="px-2 pt-0 m-0 italic basis-2/5 break-all"
+									/>
 								</div>
 							</div>
 						{/each}
