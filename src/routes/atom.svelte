@@ -6,6 +6,10 @@
 	export let baseStyle = '';
 	let editStyle =
 		'hover:border-indigo-500 focus:border-indigo-500 border-2 border-white [&[contenteditable]]:active:border-2 [&[contenteditable]]:focus:border-2 [&[contenteditable]]:focus:outline-none break-words';
+
+	let menuOptions = ['duplicate', 'delete'];
+	let menu = false;
+	let menuPos = { x: 0, y: 0 };
 </script>
 
 <svelte:window
@@ -25,7 +29,7 @@
 	on:dblclick|preventDefault|stopPropagation={() => {
 		editable = content;
 	}}
-	on:click|preventDefault|stopPropagation={() => {
+	on:click|preventDefault|stopPropagation={(event) => {
 		selectedChild = content;
 	}}
 	contenteditable={editable === content}
