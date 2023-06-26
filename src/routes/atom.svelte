@@ -5,7 +5,7 @@
 
 	export let baseStyle = '';
 	let editStyle =
-		'hover:border-indigo-500 focus:border-indigo-500 border-2 border-white [&[contenteditable]]:active:border-2 [&[contenteditable]]:focus:border-2 [&[contenteditable]]:focus:outline-none ';
+		'hover:border-indigo-500 focus:border-indigo-500 border-2 border-white [&[contenteditable]]:active:border-2 [&[contenteditable]]:focus:border-2 [&[contenteditable]]:focus:outline-none break-words';
 </script>
 
 <svelte:window
@@ -19,7 +19,7 @@
 <div
 	role="button"
 	tabindex="0"
-	on:keydown|preventDefault|once={() => {
+	on:keydown|once={() => {
 		editable = content;
 	}}
 	on:dblclick|preventDefault|stopPropagation={() => {

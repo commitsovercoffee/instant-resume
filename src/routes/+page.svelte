@@ -1,5 +1,6 @@
 <script>
 	import Atom from './atom.svelte';
+	import SectionTitle from './sectionTitle.svelte';
 
 	let editStyle =
 		'hover:border-indigo-500 focus:border-indigo-500 border-2 border-white [&[contenteditable]]:active:border-2 [&[contenteditable]]:focus:border-2 [&[contenteditable]]:focus:outline-none ';
@@ -35,10 +36,10 @@
 		],
 
 		projects: [
-			{ name: 'beetmaster', desc: 'comprehensive guide for all things beet farming.' },
-			{ name: 'salesWarrior', desc: 'performance tracking system for sales teams.' },
+			{ name: 'Beet Master', desc: 'comprehensive guide for all things beet farming.' },
+			{ name: 'Sales Warrior', desc: 'performance tracking system for sales teams.' },
 			{
-				name: 'pranksters-paradise',
+				name: 'Pranksters Pro',
 				desc: 'pranks to outwit and outsmart Jim Halpert.'
 			}
 		],
@@ -143,7 +144,7 @@
 {#if menu}
 	<ul
 		style="top:{menuPos.y}px; left:{menuPos.x}px"
-		class="absolute rounded-xl bg-lime-100 prose w-40 z-10"
+		class="absolute rounded-xl bg-lime-0 prose w-40 z-10"
 	>
 		{#each menuOptions as opt}
 			<li class="p-2 hover:bg-lime-300">
@@ -153,289 +154,108 @@
 	</ul>
 {/if}
 
-<!-- resume page-->
-<div class="px-8 py-16 border-gray-600 border-t-8 shadow-md shadow-gray-800 border mt-16">
-	<!-- resume page-->
+<div class="px-6 pt-4 pb-8 my-8 shadow-md shadow-gray-800 bg-teal-0">
+	<div class="section-block p-1 bg-stone-0 flex justify-between my-8">
+		<!-- Title ------------------------------------------->
+		<section class="section-block p-1 mb-2 bg-stone-0">
+			<Atom content={name} baseStyle="m-0 prose text-4xl font-bold" />
+			<Atom content={contact.mail} baseStyle="p-0 m-0 text-xs font-light" />
+			<Atom content={contact.website} baseStyle="p-0 m-0 text-xs font-light" />
+		</section>
+
+		<!-- LINKS ------------------------------------------->
+		<section class="section-block p-1 mb-2">
+			{#each Object.entries(links) as [key, value]}
+				<Atom content={value} baseStyle="p-0 m-0 text-xs italic font-light" />
+			{/each}
+		</section>
+	</div>
 	<div>
-		<!-- header -->
-		<div class={'flex justify-between '}>
-			<div>
-				<!-- name -->
-				<h1
-					contenteditable="false"
-					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 prose text-4xl font-bold"
-					on:keydown={() => {}}
-				>
-					{name}
-				</h1>
-
-				<!-- role -->
-				<p
-					contenteditable="false"
-					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 prose"
-				>
-					{name}
-				</p>
-			</div>
-
-			<!-- contact details -->
-			<div class="prose">
-				<!-- mail -->
-				<p
-					contenteditable="false"
-					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
-				>
-					{contact.mail}
-				</p>
-				<!-- phone -->
-				<p
-					contenteditable="false"
-					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
-				>
-					{contact.phone}
-				</p>
-				<!-- website -->
-				<p
-					contenteditable="false"
-					class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
-				>
-					{contact.website}
-				</p>
-				<!-- links -->
-				<section class="mt-2">
-					{#each Object.entries(links) as [key, value]}
-						<p
-							contenteditable="false"
-							class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 text-xs"
-						>
-							{value}
-						</p>
-					{/each}
-				</section>
-			</div>
-		</div>
-
 		<div class="flex">
-			<!-- col left -->
 			<section class="mr-2 w-1/3 grow-0 prose prose-gray">
-				<!-- skills section -->
-				<section>
-					<!-- section title -->
-					<p
-						contenteditable="false"
-						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
-					>
-						Skills
-					</p>
-
-					<!-- skills -->
-					<div class="text-xs pl-0 flex flex-wrap">
+				<!-- SKILLS ---------------------------------->
+				<section class="section-block p-1 mb-2 bg-teal-0">
+					<SectionTitle title="Skills" />
+					<div class="py-1 flex flex-wrap">
 						{#each superset['skills'] as skill}
-							<p
-								contenteditable="false"
-								class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default bg-gray-100 rounded-xl m-1 p-1"
-							>
-								{skill}
-							</p>
+							<Atom content={skill} baseStyle="bg-gray-100 rounded-xl text-xs m-0.5 px-1" />
 						{/each}
 					</div>
 				</section>
-
-				<!-- certifications section -->
-				<section>
-					<!-- section title -->
-					<p
-						contenteditable="false"
-						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
-					>
-						Certificates
-					</p>
-					<!-- certifications -->
-					<ul class="text-xs pl-0 list-outside list-none">
+				<!-- CERTIFICATES ---------------------------->
+				<section class="section-block p-1 mb-2 bg-red-0">
+					<SectionTitle title="Certificates" />
+					<div class="py-1 flex flex-wrap">
 						{#each superset['certifications'] as certificate}
-							<li
-								class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default"
-								contenteditable="false"
-							>
-								{certificate}
-							</li>
+							<Atom content={certificate} baseStyle="text-xs m-0.5 p-0.5" />
 						{/each}
-					</ul>
+					</div>
 				</section>
-
-				<!-- projects section -->
-				<section>
-					<!-- section title -->
-					<p
-						contenteditable="false"
-						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
-					>
-						Projects
-					</p>
-					<!-- projects -->
+				<!-- PROJECTS -------------------------------->
+				<section class="section-block p-1 mb-2 bg-sky-0">
+					<SectionTitle title="Projects" />
 					{#each superset['projects'] as project}
-						<div class="flex flex-col text-xs">
-							<div>
-								<p
-									contenteditable="false"
-									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-semibold"
-								>
-									{project.name}
-								</p>
-								<p
-									contenteditable="false"
-									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 ml-6 text-xs italic"
-								>
-									{project.desc}
-								</p>
-							</div>
+						<div class="py-1">
+							<Atom content={project.name} baseStyle="text-xs m-0.5 p-0.5 font-semibold" />
+							<Atom content={project.desc} baseStyle="text-xs m-0.5 p-0.5 ml-4 italic" />
 						</div>
 					{/each}
 				</section>
-
-				<!-- interests section -->
-				<section>
-					<!-- section title -->
-					<p
-						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
-					>
-						Interests
-					</p>
-					<!-- interests -->
-					<ul class="text-xs pl-0 list-inside">
+				<!-- INTERESTS ------------------------------->
+				<section class="section-block p-1 mb-2 bg-lime-0">
+					<SectionTitle title="Interests" />
+					<div class="py-1">
 						{#each superset['interests'] as interest}
-							<li
-								contenteditable="false"
-								class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default"
-							>
-								{interest}
-							</li>
+							<Atom content={interest} baseStyle="text-xs m-0 p-0" />
 						{/each}
-					</ul>
+					</div>
 				</section>
 			</section>
 
-			<!-- col right -->
 			<section class="ml-2 w-2/3 grow-0 prose prose-gray">
-				<!-- summary section -->
-				<section>
-					<!-- summary title -->
-					<p
-						contenteditable="false"
-						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
-					>
-						Summary
-					</p>
-
-					<!-- summaries -->
-					<section>
+				<!-- SUMMARY --------------------------------->
+				<section class="section-block p-1 mb-2 bg-violet-0">
+					<SectionTitle title="Summary" />
+					<div class="py-1">
 						{#each superset['summary'] as summary}
-							<p
-								contenteditable="false"
-								class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 p-0 text-xs"
-							>
-								{summary}
-							</p>
+							<Atom content={summary} baseStyle="text-xs m-0.5 p-0.5" />
 						{/each}
-					</section>
+					</div>
 				</section>
-
-				<!-- experience section -->
-				<section>
-					<!-- experience title -->
-					<p
-						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
-					>
-						Experience
-					</p>
-					<!-- experiences -->
-					<section>
-						{#each superset['experiences'] as experience}
-							<div class="flex flex-col justify-between text-xs mb-2">
-								<!-- role -->
-								<p
-									contenteditable="false"
-									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 font-semibold"
-								>
-									{experience.role}
-								</p>
-
-								<!-- company detail -->
-								<div class="flex justify-between">
-									<!-- comapany name -->
-									<p
-										contenteditable="false"
-										class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 font-light"
-									>
-										{experience.company}
-									</p>
-									<!-- company duration -->
-									<p
-										contenteditable="false"
-										class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default p-0 m-0 italic"
-									>
-										{experience.duration}
-									</p>
-								</div>
-								<!-- divider -->
-								<hr class="m-0 p-0 my-2" />
-								<!-- experience summary -->
-								<p
-									contenteditable="false"
-									class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 p-0"
-								>
-									{experience.summary}
-								</p>
-								<!-- experience pointers -->
-								<ul>
-									{#each experience.tasks as task}
-										<li
-											contenteditable="false"
-											class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default m-0 p-0"
-										>
-											{task}
-										</li>
-									{/each}
-								</ul>
+				<!-- EXPERIENCE ------------------------------>
+				<section class="section-block p-1 mb-2 bg-orange-0">
+					<SectionTitle title="Experience" />
+					{#each superset['experiences'] as experience}
+						<div class="text-xs mb-4 bg-red-0">
+							<Atom content={experience.role} baseStyle="p-0.5 m-0.5 font-semibold" />
+							<div class="flex justify-between">
+								<Atom content={experience.company} baseStyle="p-0.5 m-0.5 font-light" />
+								<Atom content={experience.duration} baseStyle="p-0.5 m-0.5 italic text-right" />
 							</div>
-						{/each}
-					</section>
+							<hr class="m-0 p-0 my-2" />
+							<Atom content={experience.summary} baseStyle="p-0.5 m-0.5" />
+							{#each experience.tasks as task}
+								<Atom content={`- ${task}`} baseStyle="p-0 m-0" />
+							{/each}
+						</div>
+					{/each}
 				</section>
-
-				<!-- education section -->
-				<section>
-					<!-- education title -->
-					<p
-						class="hover:border-indigo-500 focus:border-indigo-500 border-2 border-white cursor-default font-bold underline underline-offset-4"
-						contenteditable={selectedChild === 'education'}
-						on:dblclick={() => {
-							selectedChild = 'education';
-						}}
-					>
-						Education
-					</p>
-					<!--  educations -->
-					<section>
+				<!-- EDUCATION ------------------------------->
+				<section class="section-block p-1 mb-2 bg-green-0">
+					<SectionTitle title="Education" />
+					<section class="py-1 text-xs">
 						{#each superset['education'] as education}
-							<div class={'flex flex-col justify-between text-xs mb-2 '}>
-								<!-- degree -->
-								<Atom
-									content={education.degree}
-									baseStyle="px-2 m-0 font-semibold basis-1 break-all"
-								/>
-
-								<div class="flex overflow-hidden">
-									<!-- institute -->
-									<Atom
-										content={education.institute}
-										baseStyle="px-2 pt-0 m-0 font-light basis-3/5 break-all "
-									/>
-
-									<!-- year -->
-									<Atom
-										content={education.duration}
-										baseStyle="px-2 pt-0 m-0 italic basis-2/5 break-all"
-									/>
+							<div
+								class={''}
+								role="menu"
+								tabindex="0"
+								on:keydown|preventDefault|once={() => {}}
+								on:click|preventDefault|stopPropagation={() => {}}
+							>
+								<Atom content={education.degree} baseStyle="m-0.5 p-0.5 font-semibold" />
+								<div class="flex justify-between">
+									<Atom content={education.institute} baseStyle="p-0.5 m-0.5 font-light" />
+									<Atom content={education.duration} baseStyle="p-0.5 m-0.5 italic text-right" />
 								</div>
 							</div>
 						{/each}
