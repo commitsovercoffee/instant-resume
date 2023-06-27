@@ -1,15 +1,26 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+	import Page from './+page.svelte';
+	const dispatch = createEventDispatcher();
+
 	export let editable = '';
 	export let selectedChild = '';
 	export let content = '';
+	let hidden = false;
 
 	export let baseStyle = '';
 	let editStyle =
 		'hover:border-indigo-500 focus:border-indigo-500 border-2 border-white [&[contenteditable]]:active:border-2 [&[contenteditable]]:focus:border-2 [&[contenteditable]]:focus:outline-none break-words';
 
-	let menuOptions = ['duplicate', 'delete'];
-	let menu = false;
-	let menuPos = { x: 0, y: 0 };
+	let current;
+
+	function handleMenuVisibility() {
+		console.log(current.getBoundingClientRect());
+		dispatch('menuStateChange', {
+			status: hidden,
+			rect: current.getBoundingClientRect()
+		});
+	}
 </script>
 
 <svelte:window
@@ -17,10 +28,13 @@
 	on:click={() => {
 		selectedChild = '';
 		editable = '';
+		hidden = false;
+		handleMenuVisibility();
 	}}
 />
 
 <div
+	bind:this={current}
 	role="button"
 	tabindex="0"
 	on:keydown|once={() => {
@@ -28,9 +42,13 @@
 	}}
 	on:dblclick|preventDefault|stopPropagation={() => {
 		editable = content;
+		hidden = false;
+		handleMenuVisibility();
 	}}
-	on:click|preventDefault|stopPropagation={(event) => {
+	on:click|preventDefault|stopPropagation={() => {
 		selectedChild = content;
+		hidden = true;
+		handleMenuVisibility();
 	}}
 	contenteditable={editable === content}
 	class={`${baseStyle} ${editStyle} ${
