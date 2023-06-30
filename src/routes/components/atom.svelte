@@ -9,6 +9,8 @@
 	let selected = false;
 	let editable = false;
 
+	$: selected = $menu.visible;
+
 	// vars for component content
 	export let content = "";
 	export let style = "";
@@ -21,29 +23,22 @@
 	tabindex="0"
 	bind:this={pos}
 	on:keydown={() => {}}
-	on:click={() => {
+	on:click|stopPropagation={() => {
 		if (editable) {
 		} else {
 			selected = true;
-			console.log(pos.getBoundingClientRect());
 			$menu.pos = pos.getBoundingClientRect();
 			$menu.visible = true;
 		}
-	}}
-	on:scroll={() => {
-		console.log(pos.getBoundingClientRect());
-		$menu.pos = pos.getBoundingClientRect();
 	}}
 	on:dblclick={() => {
 		editable = true;
 		$menu.visible = false;
 	}}
 	on:focusout={() => {
-		selected = false;
 		editable = false;
-		$menu.visible = false;
 	}}
-	contenteditable={editable}
+	contenteditable={editable && !$menu.visible}
 	class={`${style} ${base} ${
 		editable ? "cursor-text" : "cursor-default select-none"
 	}`}

@@ -10,13 +10,18 @@
 
 {#if $menu.visible}
 	<section
-		class="p-2 m-2 h-28 rounded-xl absolute bg-zinc-50"
+		class="p-2 m-2 h-28 rounded-xl absolute bg-zinc-50 flex flex-col"
 		style="left:{posX}px; top:{posY}px;"
 	>
 		{#each opts as opt}
-			<p class="p-1 m-1 text-xs">
+			<button
+				class="p-1 m-1 text-xs"
+				on:click={() => {
+					console.log(opt);
+				}}
+			>
 				{opt}
-			</p>
+			</button>
 		{/each}
 	</section>
 {/if}
@@ -27,4 +32,8 @@
 	on:scroll={() => {
 		$menu.visible = false;
 	}}
+	on:click={() => {
+		$menu.visible = false;
+	}}
+	on:contextmenu|preventDefault
 />
