@@ -5,7 +5,7 @@
 
 <p>Pro Component</p>
 
-<div class="bg-red-100">
+<div class="bg-red-100 flex">
 	{#each $details.interests as interest}
 		<Atom content={interest} />
 	{/each}

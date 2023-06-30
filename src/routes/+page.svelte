@@ -1,6 +1,7 @@
 <script>
 	import Pro from "./templates/pro.svelte";
 	import Novice from "./templates/novice.svelte";
+	import Menu from "./components/menu.svelte";
 
 	let selectedTemplate = "pro";
 </script>
@@ -25,3 +26,5 @@
 		<Novice />
 	{/if}
 </section>
+
+<Menu/>
