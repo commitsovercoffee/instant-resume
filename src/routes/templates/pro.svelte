@@ -6,7 +6,13 @@
 <p>Pro Component</p>
 
 <div class="bg-red-100 flex">
-	{#each $details.interests as interest}
-		<Atom content={interest} />
+	{#each $details.interests as content}
+		<Atom {content} />
 	{/each}
+
+	<div>
+		{#each $details.skills as content}
+			<Atom {content} />
+		{/each}
+	</div>
 </div>

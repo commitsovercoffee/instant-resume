@@ -18,7 +18,7 @@
 	</p>
 </section>
 
-<section class="mx-auto">
+<section class="mx-auto h-[500px] prose prose-zinc">
 	{#if selectedTemplate === "pro"}
 		<Pro />
 	{/if}
@@ -27,4 +27,4 @@
 	{/if}
 </section>
 
-<Menu/>
+<Menu />

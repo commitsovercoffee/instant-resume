@@ -30,6 +30,10 @@
 			$menu.visible = true;
 		}
 	}}
+	on:scroll={() => {
+		console.log(pos.getBoundingClientRect());
+		$menu.pos = pos.getBoundingClientRect();
+	}}
 	on:dblclick={() => {
 		editable = true;
 		$menu.visible = false;
