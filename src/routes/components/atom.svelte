@@ -13,6 +13,7 @@
 
 	// vars for component content
 	export let content = "";
+	export let parent = "";
 	export let style = "";
 
 	let pos;
@@ -29,6 +30,8 @@
 			selected = true;
 			$menu.pos = pos.getBoundingClientRect();
 			$menu.visible = true;
+			$menu.parent = parent;
+			$menu.content = content;
 		}
 	}}
 	on:dblclick={() => {

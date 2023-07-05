@@ -1,15 +1,18 @@
 import { writable } from "svelte/store";
 
 export const menu = writable({
+	content: 'abc',
+	parent: 'abc',
+	opt:'',
 	visible: false,
 	pos: {
-		x: 129.11666870117188,
-		y: 207,
-		width: 92.19999694824219,
-		height: 21.600006103515625,
-		top: 207,
-		right: 221.31666564941406,
-		bottom: 228.60000610351562,
-		left: 129.11666870117188,
+		x: 0,
+		y: 0,
+		width: 0,
+		height: 0,
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
 	},
 });
