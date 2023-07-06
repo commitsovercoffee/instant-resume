@@ -5,60 +5,55 @@
 
 <div class="p-8 shadow-zinc-800 shadow-md">
 	<!-- Applicant Name -------------------------------------------------->
-	<div class="my-2">
+	<div class="my-8">
 		<Atom
-			content={$details.name.toUpperCase()}
+			content={$details.profile.name.toUpperCase()}
 			type="block"
 			style="font-thin text-center text-3xl"
+		/>
+		<Atom
+			type="block"
+			content={$details.profile.contact}
+			parent="schools"
+			style="text-xs text-center"
 		/>
 	</div>
 
 	<!-- Education Section ----------------------------------------------->
-	<div class="my-2">
+	<div class="mb-4">
 		<Atom
 			content="EDUCATION"
 			type="block"
 			style="text-xl font-thin"
 		/>
 		<hr class="m-0 mb-2" />
-
-		<!-- Institute -->
-		{#each $details.institutes as institute, i}
-			<Atom
-				type="section"
-				items={[
-					"institutes",
-					"degrees",
-					"details",
-					"periods",
-				]}
-				index={i}
-			>
+		{#each $details.schools as school, i}
+			<Atom type="section" items={["schools"]} index={i}>
 				<section class="flex justify-between">
 					<Atom
 						type="block"
-						content={$details.institutes[i]}
-						parent="institutes"
+						content={school.institute}
+						parent="schools"
 						style="font-bold"
 						index={i}
 					/>
 					<Atom
 						type="block"
-						content={$details.terms[i]}
-						parent="terms"
+						content={school.duration}
+						parent="schools"
 						style="font-thin tracking-tighter"
 						index={i}
 					/>
 				</section>
-
 				<Atom
 					type="block"
-					content={$details.degrees[i]}
-					parent="degrees"
-					style="italic"
+					content={school.course}
+					parent="schools"
+					style="text-xs"
 					index={i}
 				/>
-				{#each $details.details[i] as detail}
+
+				{#each school.details as detail}
 					<li class="ml-8 my-0">
 						<Atom
 							type="block"
@@ -74,7 +69,7 @@
 	</div>
 
 	<!-- Experience Section ---------------------------------------------->
-	<div class="my-2">
+	<div class="mb-4">
 		<Atom
 			content="EXPERIENCE"
 			type="block"
@@ -82,37 +77,33 @@
 		/>
 		<hr class="m-0 mb-2" />
 
-		{#each $details.companies as company, i}
-			<Atom
-				type="section"
-				items={["companies", "roles", "tasks"]}
-				index={i}
-			>
+		{#each $details.experiences as experience, i}
+			<Atom type="section" items={["experiences"]} index={i}>
 				<section class="flex justify-between">
 					<Atom
 						type="block"
-						content={$details.companies[i]}
-						parent="companies"
+						content={experience.company}
+						parent="experiences[i]"
 						style="font-bold"
 						index={i}
 					/>
 					<Atom
 						type="block"
-						content={$details.periods[i]}
-						parent="terms"
+						content={experience.duration}
+						parent="experiences[i]"
 						style="font-thin tracking-tighter"
 						index={i}
 					/>
 				</section>
-
 				<Atom
 					type="block"
-					content={$details.roles[i]}
-					parent="roles"
+					content={experience.role}
+					parent="experiences[i]"
 					style="text-xs"
 					index={i}
 				/>
-				{#each $details.tasks[i] as task}
+
+				{#each experience.tasks as task}
 					<li class="ml-8 my-0">
 						<Atom
 							type="block"
@@ -128,21 +119,19 @@
 	</div>
 
 	<!-- Skills Section -------------------------------------------------->
-	<div class="my-2">
+	<div class="mb-4">
 		<Atom content="SKILLS" type="block" style="text-xl font-thin" />
 		<hr class="m-0 mb-2" />
-		{#each $details.skills as _, i}
-			<Atom
-				type="block"
-				content={$details.skills[i]}
-				parent="skills"
-				style="text-xs ml-0 p-4"
-			/>
-		{/each}
+		<Atom
+			type="block"
+			content={$details.skills}
+			parent="skills"
+			style="text-xs m-0 p-0"
+		/>
 	</div>
 
 	<!-- Projects Section ------------------------------------------------>
-	<div class="my-2">
+	<div class="mb-4">
 		<Atom
 			content="PROJECTS"
 			type="block"

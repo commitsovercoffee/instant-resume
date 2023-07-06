@@ -1,55 +1,57 @@
 import { writable } from "svelte/store";
 
 export const details = writable({
-  name: "Dwight K. Shrute",
-  institutes: ["Scranton University, Scranton"],
-  degrees: ["B.Sc in Agriculture (Honors)"],
-  terms: ["Sep’17 — Dec’21"],
-  details: [
-    [
-      "GPA: 3.99 / 4.00. Dean’s scholarship",
-      "Courses : Beet Farming Techniques and BeetologySurvival Strategies in a Post-Apocalyptic World",
-    ],
+  profile: {
+    name: "Dwight K. Shrute",
+    contact: "dwightshrute@gmail.com | (555) 123-4567 | shrutefarms.com",
+  },
+  schools: [
+    {
+      course: "B.Sc in Agriculture (Honors)",
+      institute: "Scranton University, Scranton",
+      duration: "2003",
+      details: [
+        "GPA: 3.99 / 4.00. Dean’s scholarship",
+        "Courses : Beet Farming Techniques and BeetologySurvival Strategies in a Post-Apocalyptic World",
+      ],
+    },
   ],
-  companies: [
-    "Scranton University, Scranton",
-    "Scranton University, Scranton",
-    "Staples, Scranton",
-  ],
-  roles: [
-    "Assistant Regional Manager",
-    "Assistant to the Regional Manager",
-    "Sales Associate",
-  ],
-  tasks: [
-    [
-      "Increased sales and client retention.",
-      "Improved customer satisfaction.",
-      "Cost savings through streamlined administrative processes.",
-    ],
-    [
-      "Improved filing system accessibility.",
-      "Increased revenue from sales strategies.",
-      "Enhanced communication between Regional Manager and staff.",
-    ],
-    [
-      "Exceeded sales targets consistently.",
-      "High customer satisfaction and repeat business.",
-      "Recognition for outstanding performance.",
-    ],
+  experiences: [
+    {
+      role: " Assistant Regional Manager",
+      company: "Dunder Mifflin, Scranton, PA",
+      duration: "2010 - Present",
+      tasks: [
+        "Increased sales and client retention.",
+        "Improved customer satisfaction.",
+        "Cost savings through streamlined administrative processes.",
+      ],
+      deletable: true,
+    },
+    {
+      role: " Assistant to the Regional Manager",
+      company: " Dunder Mifflin, Scranton, PA",
+      duration: " 2005 - 2010",
+      tasks: [
+        "Improved filing system accessibility.",
+        "Increased revenue from sales strategies.",
+        "Enhanced communication between Regional Manager and staff.",
+      ],
+    },
+    {
+      role: "Sales Associate",
+      company: "Staples, Scranton, PA",
+      duration: "2003 - 2005",
+      tasks: [
+        "Exceeded sales targets consistently.",
+        "High customer satisfaction and repeat business.",
+        "Recognition for outstanding performance.",
+      ],
+    },
   ],
 
-  periods: ["Aug'10 - Present", "June'05 - July'10", "Feb'03 - Nov'05"],
-  skills: [
-    [
-      "Sales Techniques",
-      "Customer Relations",
-      "Account Management",
-      "Cold Calling",
-      "MS Office",
-    ],
-  ],
-
+  skills:
+    "Sales Techniques, Customer Relations, Account Management, Cold Calling and MS Office",
   projects: [
     {
       name: "Beet Master",
