@@ -41,10 +41,27 @@ export const details = writable({
 
   periods: ["Aug'10 - Present", "June'05 - July'10", "Feb'03 - Nov'05"],
   skills: [
-    "Sales Techniques",
-    "Customer Relations",
-    "Account Management",
-    "Cold Calling",
-    "MS Office",
+    [
+      "Sales Techniques",
+      "Customer Relations",
+      "Account Management",
+      "Cold Calling",
+      "MS Office",
+    ],
+  ],
+
+  projects: [
+    {
+      name: "Beet Master",
+      desc: "comprehensive guide for all things beet farming.",
+    },
+    {
+      name: "Sales Warrior",
+      desc: "performance tracking system for sales teams.",
+    },
+    {
+      name: "Pranksters Pro",
+      desc: "pranks to outwit and outsmart Jim Halpert.",
+    },
   ],
 });

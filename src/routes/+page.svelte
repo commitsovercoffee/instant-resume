@@ -6,25 +6,24 @@
 	let selectedTemplate = "pro";
 </script>
 
-<section class="mx-auto my-16 rounded-xl bg-pink-100 prose prose-pink">
-	<h3 class="p-2 mx-4">Instant Resume</h3>
-	<p class="p-4 m-2 text-xs">
-		Click to select and Double click to edit text. <br /> Checkout
-		the
-		<a href="https://github.com/commitsovercoffee/instant-resume"
-			>repo</a
-		>
-		for more info.
-	</p>
-</section>
+<div class="mx-auto mb-16 prose prose-pink">
+	<section class="p-2 m-2">
+		<h3>Instant Resume</h3>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			Placeat beatae quibusdam excepturi quos, consequatur
+			ullam autem ad sequi necessitatibus consectetur iure,
+			blanditiis deleniti. Quia, maxime! Praesentium repellat
+			omnis sequi aperiam!
+		</p>
+	</section>
 
-<section class="mx-auto h-[500px] prose prose-zinc">
 	{#if selectedTemplate === "pro"}
 		<Pro />
 	{/if}
 	{#if selectedTemplate === "novice"}
 		<Novice />
 	{/if}
-</section>
 
-<Menu />
+	<Menu />
+</div>

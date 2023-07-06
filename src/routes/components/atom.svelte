@@ -67,7 +67,9 @@
 			$menu.index = index;
 		}}
 		class={`${style} ${base} ${
-			editable ? "cursor-text" : "cursor-default select-none"
+			editable
+				? "cursor-text py-1 px-2"
+				: "cursor-default select-none py-1 px-2"
 		}`}
 	>
 		<slot />
