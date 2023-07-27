@@ -23,8 +23,8 @@
 
 		switch ($menu.opt) {
 			case "duplicate":
-				console.log(items.length);
-				console.log(parentArray);
+				console.log($details[parent]);
+				console.log($details[items[0]]);
 				if (items.length === 0) {
 					$details[parent].splice(
 						index,
@@ -44,15 +44,8 @@
 				console.log(parentArray);
 				break;
 			case "delete":
-				if (items.length === 0) {
-					index =
-						parentArray.indexOf(
-							menuContent
-						);
-					if (index > -1) {
-						parentArray.splice(index, 1);
-					}
-				} else {
+				console.log($details[items[0]].length);
+				if ($details[items[0]] > 1) {
 					index = $menu.index;
 					for (const item of items) {
 						$details[item].splice(index, 1);
